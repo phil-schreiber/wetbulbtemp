@@ -1,0 +1,37 @@
+import os
+from flask import Flask
+import json
+import requests
+import numpy as np
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
+
+app = Flask(__name__)
+weather_url = 'https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&unit=metric&appid={}'
+dummy = '{"coord":{"lon":7.0691,"lat":50.9616},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"base":"stations","main":{"temp":300.00,"feels_like":296.9,"temp_min":294.78,"temp_max":299.25,"pressure":1017,"humidity":43},"visibility":10000,"wind":{"speed":3.09,"deg":110},"clouds":{"all":0},"dt":1660289038,"sys":{"type":2,"id":2005976,"country":"DE","sunrise":1660277636,"sunset":1660330789},"timezone":7200,"id":2900063,"name":"Holweide","cod":200}'
+
+@app.route('/<float:lat>/<float:lon>',  methods=['GET'])
+def index(lat: float, lon: float):
+    # r = requests.get(weather_url.format(lat, lon, API_KEY))
+    rjson = json.loads(dummy)
+    weather_main = rjson['main'];
+    t = weather_main['temp']/10
+    rh = weather_main['humidity']
+
+    wet_bulb_tmp = formulas.calc_wet_bulb_tmp(t, rh)
+    return f'Wet Bulb Temp: {wet_bulb_tmp}'
+
+
+class formulas:
+    def calc_wet_bulb_tmp(t: int, rh: int):
+
+        a = np.arctan((0.151977 * np.power(rh+8.313659, 0.5)))
+        b = np.arctan((t+rh))
+        c = np.arctan((rh-1.676331))
+        d = 0.00391838 * np.power(rh, 1.5)
+        e = np.arctan((0.023101 * rh))
+
+        return t*a + b - c + (d*e) - 4.686035
