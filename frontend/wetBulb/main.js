@@ -22,7 +22,7 @@ function geoFindMe() {
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      fetch(`http://127.0.0.1:5000/${latitude}/${longitude}`)
+      fetch(`api/${latitude}/${longitude}`)
         .then((res) => {
         return res.json()
         })
