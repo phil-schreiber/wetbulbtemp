@@ -1,15 +1,17 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import "@geoapify/geocoder-autocomplete/styles/minimal.css";
+import { GeocoderAutocomplete } from '@geoapify/geocoder-autocomplete';
+
 
 document.querySelector('#app').innerHTML = `
-  <div>
-    <div id="result">
-    </div>
     <div class="card">
+        Wet bulb temperature in ° Celsius:
+        <div id="result">
+        ?
+        </div><br />
+        <div id="autocomplete" class="autocomplete-container"></div><br />
         <button id = "find-me">Temp for my location</button><br/>
     </div>
-  </div>
 `
 
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
@@ -22,11 +24,8 @@ function geoFindMe() {
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      fetch(`api/${latitude}/${longitude}`)
-        .then((res) => {
-        return res.json()
-        })
-        .then(data => status.textContent = data.message)
+        fetchTemp(latitude, longitude);
+
     }
 
     function error() {
@@ -42,3 +41,20 @@ function geoFindMe() {
 
   }
 
+function fetchTemp(latitude, longitude) {
+    const status = document.querySelector('#result');
+    fetch(`api/${latitude}/${longitude}`)
+        .then((res) => {
+        return res.json()
+        })
+        .then(data => status.textContent = data.message)
+}
+
+const autocomplete = new GeocoderAutocomplete(
+document.getElementById("autocomplete"),
+'370188ec3a8b4ce58084294d699036bf',
+{ /* Geocoder options */ });
+
+autocomplete.on('select', (location) => {
+    fetchTemp(location.properties.lat, location.properties.lon);
+});

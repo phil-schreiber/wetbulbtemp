@@ -85,17 +85,32 @@ h1 {
   color: #888;
 }
 
-button {
+#autocomplete {
+    width: 100%;
+}
+button, #result, .geoapify-autocomplete-input {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: palevioletred;
+}
+
+.geoapify-autocomplete-input {
+    color: darkgray;
+}
+
+button, #result {
+    background-color: palevioletred;
+}
+
+button {
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 100%;
 }
+
 button:hover {
   border-color: wheat;
 }
@@ -111,4 +126,8 @@ button:focus-visible {
 
 section {
     text-align: center;
+}
+
+.autocomplete-container {
+    position: relative;
 }
