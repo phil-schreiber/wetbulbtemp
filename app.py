@@ -26,8 +26,8 @@ def index(lat: float, lon: float):
     t = weather_main['temp']/10
     rh = weather_main['humidity']
 
-    wet_bulb_tmp = formulas.calc_wet_bulb_tmp(t, rh)
-    m = f'Wet Bulb Temp: {wet_bulb_tmp}'
+    wet_bulb_tmp = round(formulas.calc_wet_bulb_tmp(t, rh), 2)
+    m = f'{wet_bulb_tmp}'
     response = jsonify(message=m)
 
     return response
