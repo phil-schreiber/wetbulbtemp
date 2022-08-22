@@ -17,9 +17,11 @@ CORS(app)
 weather_url = 'https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&units=metric&appid={}'
 dummy = '{"coord":{"lon":7.0691,"lat":50.9616},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"base":"stations","main":{"temp":300.00,"feels_like":296.9,"temp_min":294.78,"temp_max":299.25,"pressure":1017,"humidity":43},"visibility":10000,"wind":{"speed":3.09,"deg":110},"clouds":{"all":0},"dt":1660289038,"sys":{"type":2,"id":2005976,"country":"DE","sunrise":1660277636,"sunset":1660330789},"timezone":7200,"id":2900063,"name":"Holweide","cod":200}'
 
-@app.route('/api/<float:lat>/<float:lon>', methods=['GET'])
+@app.route('/api/<string:lat>/<string:lon>', methods=['GET'])
 @cross_origin()
-def index(lat: float, lon: float):
+def index(lat, lon):
+    lat = float(lat)
+    lon = float(lon)
     r = requests.get(weather_url.format(lat, lon, API_KEY))
     rjson = r.json()
     weather_main = rjson['main'];
