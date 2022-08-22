@@ -4,25 +4,35 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Realtime Wet Bulb Temperature Service</title>
+    <title>Realtime Wet-Bulb Temperature Service</title>
     <script type="module" crossorigin src="/assets/index.dff0f921.js"></script>
-    <link rel="stylesheet" href="/assets/index.ceb23c20.css">
+    <link rel="stylesheet" href="/assets/index.4e97eac6.css">
   </head>
   <body>
     <section>
-        <h1>Check your current Wet Bulb Temperature</h1>
+        <h1>Check your current Wet-Bulb Temperature</h1>
         <p>Use this service to check whether you're at risk of overheating wherever you are.</p>
     </section>
     <section>
         <div id="app"></div>
     </section>
-    <section>
-        <i>35°C Wet Bulb Temperature is extremely dangerous to humans!</i>
-        <p>Disclaimer: The site owner takes no responsibility for the correctness of the content.</p>
+    <section class="content">
+        <b><i>35°C Wet Bulb Temperature is extremely dangerous to humans!</i></b>
+        <p>Explanation: The wet-bulb temperature is the lowest temperature a thermometer shows that is covered in soaked
+       cloth with air passing over it.</p>
+       <p>At such it is an ideal indicator of how cool a human can get by sweating. Higher temperature and higher
+       relative humidity will cause sweating to become less effective up to a point where the human body can not cool
+       down enough through natural ways and the climate becomes harmful.</p>
+       <p>This condition is reached at a wet-bulb temperature of 35°C and above.</p>
+       <p>This tool uses the <a href="https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml"
+       target="_blank">Stull formula</a> that approximates the wet-bulb temperature well from −20° to 50°C and 5% to 99%
+       relative humidity.</p>
 
     </section>
 
-    <footer>Responsible for this site: Philipp Schreiber - me@wet-bulb-temperature.com</footer>
+    <footer>
+        <p>Disclaimer: The site owner takes no responsibility for the correctness of the content.</p>
+        <p>Responsible for this site: Philipp Schreiber - me@wet-bulb-temperature.com</p></footer>
     
   </body>
 </html>

@@ -43,7 +43,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
   flex-direction: column;
@@ -124,10 +124,23 @@ button:focus-visible {
     height:100vh;
 }
 
-section {
-    text-align: center;
+section, footer {
+    text-align: left;
+    padding: 0rem 2rem;
+}
+
+section.content {
+    text-align: justify;
+    max-width: 36rem;
 }
 
 .autocomplete-container {
     position: relative;
+}
+
+footer {
+    width: 100%;
+    background-color: palevioletred;
+    border-top: 1px solid;
+    box-sizing: border-box;
 }
