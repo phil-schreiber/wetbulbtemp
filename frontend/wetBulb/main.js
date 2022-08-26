@@ -15,10 +15,8 @@ document.querySelector('#app').innerHTML = `
 `
 
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
-
+const status = document.querySelector('#result');
 function geoFindMe() {
-
-    const status = document.querySelector('#result');
 
     function success(position) {
       const latitude  = position.coords.latitude;
@@ -42,12 +40,13 @@ function geoFindMe() {
   }
 
 function fetchTemp(latitude, longitude) {
-    const status = document.querySelector('#result');
+    status.textContent = 'Fetching wet-bulb temperature... please wait'
     fetch(`api/${latitude}/${longitude}`)
         .then((res) => {
         return res.json()
         })
         .then(data => status.textContent = data.message)
+        .error(() => status.textContent = 'Sorry, no luck fetching the requested wet-bulb temperature. Try again with a different location.')
 }
 
 const autocomplete = new GeocoderAutocomplete(
