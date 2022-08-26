@@ -64,6 +64,13 @@ h1 {
   text-align: center;
 }
 
+#map {
+    width: 100%;
+    max-width: 50vw;
+    height: 40rem;
+    box-sizing: border-box;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -118,14 +125,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#map {
-    width:100vw;
-    height:100vh;
-}
 
 section, footer {
     text-align: left;
     padding: 0rem 1rem;
+    width: 100%;
 }
 
 section.content {
