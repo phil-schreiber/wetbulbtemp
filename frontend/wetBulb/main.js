@@ -5,9 +5,9 @@ import { GeocoderAutocomplete } from '@geoapify/geocoder-autocomplete';
 
 document.querySelector('#app').innerHTML = `
     <div class="card">
-        Wet bulb temperature in ° Celsius:
+        Wet-bulb temperature:
         <div id="result">
-        ?
+        Choose location first
         </div><br />
         <div id="autocomplete" class="autocomplete-container"></div><br />
         <button id = "find-me">Temp for my location</button><br/>
